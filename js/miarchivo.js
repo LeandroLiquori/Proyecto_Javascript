@@ -5,11 +5,11 @@ alert("Hola " + nombreUsuario + " " + apellidoUsuario);
 
 let edad=prompt("¿Que edad tienes?");
 
-if (edad >=18){ 
+if (edad >=18){
      alert("Usted es mayor de edad, puede ingresar a la pagina.")
      }
 else if (edad <18) {
-     alert("Usted es menor de edad, Porfavor sal de la pagina.")
+     alert("Usted es menor de edad, Por favor sal de la pagina.")
 }
 
  alert("Para terminar la compra marque 0")
@@ -36,12 +36,26 @@ else if (edad <18) {
           break;
 
           default:
-               break;
+          break;
      }
      
      seleccionarBebidas = Number(prompt("¿Que bebida estas buscando? 1-Vodka $1000 2-Gin $1500 3-Cerveza $750"));
      }
      alert("El total de la compra es: " + total )
 
+let metodoPago=prompt("¿Como desea pagar, Efectivo, Targeta de credito o Targeta de debito?")
+let porcentajeTotal= (total*10)/100
+if ((metodoPago=="Efectivo") || (metodoPago=="EFECTIVO") || (metodoPago=="efectivo")) {
+     alert("Tienes un %10 de descuento en tu compra.")
+     alert("tu total es de: " + (total - porcentajeTotal))
+}
+else if ((metodoPago=="Targeta de credito") || (metodoPago=="targeta de credito")){
+     alert("Genial, tienes 12 cuotas sin interes.")
+}
+else if ((metodoPago=="Targeta de debito") || (metodoPago=="targeta de debito")){
+     alert("Genial, gracias por tu compra.")
+}
+else {
+     alert("Ingresaste un metodo de pago invalido.")
+}
 
-    
