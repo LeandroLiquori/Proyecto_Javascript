@@ -1,61 +1,88 @@
-alert("Bienvenido a LianBar, Las mejores bebidas para vos.");
-let nombreUsuario= prompt("Ingrese su nombre");
-let apellidoUsuario=prompt("Ingrese su apellido");
-alert("Hola " + nombreUsuario + " " + apellidoUsuario);
+let total = 0;
+const productos = [];
 
-let edad=prompt("¿Que edad tienes?");
 
-if (edad >=18){
-     alert("Usted es mayor de edad, puede ingresar a la pagina.")
-     }
-else if (edad <18) {
-     alert("Usted es menor de edad, Por favor sal de la pagina.")
+// clase de producto
+class Producto {
+  constructor(nombre, precio) {
+  this.nombre = nombre;
+  this.precio = precio;
+  this.cantidad = 0;
+  }
+  }
+
+// instanciar objetos de producto y agregarlos al array
+productos.push(new Producto("Vodka", 1000));
+productos.push(new Producto("Gin", 1500));
+productos.push(new Producto("Cerveza", 750));
+
+
+function saludar (){
+    alert ('Bienvenidos a LianBar, las mejores bebidas para vos!');
+  let edad = prompt ('Ingrese su edad');
+  if (edad >= 18){
+    alert('Usted es mayor de edad, puede ingresar a la pagina');
+    seleccionarBebidas()
+    metodoDePago()
+  }
+  else {
+    alert("Lo siento, debe ser mayor de edad para ingresar a la tienda.");
+    return;
+  }}
+
+
+
+function seleccionarBebidas (){
+  let elegirBebidas = Number(prompt('¿Que bebida estas buscando? 1-Vodka $1000 2-Gin $1500 3-Cerveza $750'))
+  while (elegirBebidas != 0) {
+    switch (elegirBebidas) {
+      case 1:
+        productos[0].cantidad += Number(
+          prompt("el producto seleccionado es Vodka, indique la cantidad")
+        );
+        total += productos[0].cantidad * productos[0].precio;
+        break;
+      case 2:
+        productos[1].cantidad += Number(
+          prompt("el producto seleccionado es Gin, indique la cantidad")
+        );
+        total += productos[1].cantidad * productos[1].precio;
+        break;
+      case 3:
+        productos[2].cantidad += Number(
+          prompt("el producto seleccionado es Cerveza, indique la cantidad")
+        );
+        total += productos[2].cantidad * productos[2].precio;
+        break;
+      default:
+        break;
+    }
+    elegirBebidas = Number(
+      prompt(
+        "Desea seguir comprando o ingrese 0 para ir al carrito ¿Que bebida estas buscando? 1-Vodka $1000 2-Gin $1500 3-Cerveza $750"
+      )
+    );
+  }
+if (elegirBebidas == 0){
+  alert('el total de la compra es de = $ ' + total)
+}
 }
 
- alert("Para terminar la compra marque 0")
-
-
- 
- let seleccionarBebidas = Number(prompt("¿Que bebida estas buscando? 1-Vodka $1000 2-Gin $1500 3-Cerveza $750"));
- let seleccionarCantidad;
- let total = 0;
-
- let cantidad= (cantida,bebidas)=> {
-     return cantida * bebidas}
-
-     while(seleccionarBebidas != 0) {
-          switch (seleccionarBebidas) {
-     case 1: seleccionarCantidad=Number(prompt("Ingresaste Vodka, Porvafor ingrese la cantidad"))
-     total = seleccionarCantidad * 1000
-          break;
-     case 2:  seleccionarCantidad=Number(prompt("Ingresaste Gin, Porvafor ingrese la cantidad"))
-     total = seleccionarCantidad * 1500
-          break;
-     case 3:  seleccionarCantidad=Number(prompt("Ingresaste Cerveza, Porvafor ingrese la cantidad"))
-     total = seleccionarCantidad * 750
-          break;
-
-          default:
-          break;
-     }
-     
-     seleccionarBebidas = Number(prompt("¿Que bebida estas buscando? 1-Vodka $1000 2-Gin $1500 3-Cerveza $750"));
-     }
-     alert("El total de la compra es: " + total )
-
-let metodoPago=prompt("¿Como desea pagar, Efectivo, Targeta de credito o Targeta de debito?")
-let porcentajeTotal= (total*10)/100
-if ((metodoPago=="Efectivo") || (metodoPago=="EFECTIVO") || (metodoPago=="efectivo")) {
-     alert("Tienes un %10 de descuento en tu compra.")
-     alert("tu total es de: " + (total - porcentajeTotal))
-}
-else if ((metodoPago=="Targeta de credito") || (metodoPago=="targeta de credito")){
-     alert("Genial, tienes 12 cuotas sin interes.")
-}
-else if ((metodoPago=="Targeta de debito") || (metodoPago=="targeta de debito")){
-     alert("Genial, gracias por tu compra.")
-}
-else {
-     alert("Ingresaste un metodo de pago invalido.")
+function metodoDePago(){
+  let porcentajeTotal= (total*10)/100;
+  let totalConDescuento = total - porcentajeTotal;
+  let metodoPago = prompt('¿Como desea pagar? Efectivo / Tarjeta de credito / Tarjeta de debito');
+  if (metodoPago == "Efectivo" || metodoPago== "efectivo" || metodoPago == "EFECTIVO"){
+    alert('Usted tiene un 10% de descuento en su compra, el total de la compra es de= ' + totalConDescuento);
+  }
+  else if ( metodoPago == 'tarjeta de credito' || metodoPago == 'TARJETA DE CREDITO' || metodoPago== 'Tarjeta de credito')
+  {
+  alert('Usted tiene 12 cuotas sin interes')
+  }
+  else if(metodoPago == 'Tarjeta de debito' || metodoPago == 'tarjeta de debito' || metodoPago == 'TARJETA DE DEBITO'){
+    alert('Genial, gracias por tu compra.')
+  }
+  else {alert('Ingrese un metodo de pago valido')}
 }
 
+saludar()
