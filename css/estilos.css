@@ -1,0 +1,26 @@
+.general{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    height: auto;
+    
+}
+.div1{
+    display: flex;
+}
+
+.card-body {
+    text-align: center;
+ 
+}
+.card-img-top{
+    height: 18rem;
+    text-align: center;
+    width: 18rem;
+}
+
+.bienvenida{
+    text-align: center;
+    color: brown;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

@@ -1,3 +1,5 @@
+
+
 let total = 0;
 const productos = []; 
 
@@ -28,7 +30,6 @@ console.log (metodoFilter)
 // metodo map
 const metodoMap = productos.map (prod => prod.precio == 750)
 console.log(metodoMap)
-
 
 
 
@@ -104,3 +105,9 @@ return;}
 }
 saludar()
 
+let div = document.getElementById("div")
+div.innerHTML = "<h2>Las mejores bebidas te estan esperando!.</h2> <p>Descubrí en LIANBAR lo que más te gusta de Vinos, Gin , Cerveza y Vodka con las mejores ofertas.</p)"
+
+let parrafo = document.createElement ("p")
+parrafo.innerHTML = "<p>Todos los metodos de pago, Efectivo (con un 10% de descuento en tu compra) , Tarjeta de credito (con 12 cuotas sin interes) y Tarjeta de debito.</p>"
+document.body.append(parrafo);
