@@ -1,0 +1,37 @@
+
+[
+    {
+        "id":1,
+        "imagen":"./img/vodka.png",
+        "nombre":"Vodka Absolut",
+        "descripcion":"Vodka absolut de 1LT",
+        "precio":1000
+    },
+    {
+        "id":2,
+        "imagen":"./img/cerveza.png",
+        "nombre":"Cerveza",
+        "descripcion":"Cerveza de 1L",
+        "precio":750
+    },
+    {
+        "id":3,
+        "imagen":"./img/gin.jpg",
+        "nombre":"Gin",
+        "descripcion":"Gin de 1L",
+        "precio":1500
+    },
+    {
+        "id":4,
+        "imagen":"./img/vino.jpg",
+        "nombre":"Vino",
+        "descripcion":"Vino de 1L",
+        "precio":1200
+    },
+    {
+        "id":5,
+        "imagen":"./img/whisky.jpg",
+        "nombre":"Whisky",
+        "descripcion":"Whisky de 1L",
+        "precio":2000
+    }]
