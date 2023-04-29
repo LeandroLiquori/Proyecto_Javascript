@@ -1,30 +1,38 @@
 
-const arrayCarrito = [];
+let arrayCarrito = [];
 let productos = [];
-
-
-
 const containerCarrito = document.getElementById('carrito-container');
-
-
+const botonVaciar = document.getElementById('eliminar-carrito')
+const precioTotal = document.getElementById('precio-total');
 
 
 document.addEventListener('DOMContentLoaded', () => {
     createProduct();
+    fetchData()
+    aJson()
 });
 
 
+function aJson(){
+  if(localStorage.getItem('cart')){
+    arrayCarrito = JSON.parse(localStorage.getItem('cart'))
+    renderizarCarrito()
+  }
+}
+
+
+// reforzar fetch, metodos de array, spread operator, y condicionales con ternarias.
+
+
 // traemos los productos con una promesa asyncrona.
+// sinonimo de consumir una API pero local.
 async function fetchData(){
-    const res = await fetch("./data.json");
+    const res = await fetch("./data.json")
     const data = await res.json();
     productos = data;
     console.log(productos)
     createProduct();
 }
-
-
-
 
 
 // creamos la funcion que renderiza nuestros productos traidos desde el json guardados en productos.
@@ -34,13 +42,13 @@ function createProduct(){
         const div = document.createElement('div');
         div.innerHTML = `
         <div class="card">
-        <img src="${producto.imagen}" class="card-img-top" alt="...">
+        <img class = "img" src="${producto.imagen}" class="card-img-top" alt="...">
         <div class="card-body">
         <h5 class="card-title">${producto.nombre}</h5>
         <p class="card-text">${producto.descripcion}</p>
         <p class="card-text">$ ${producto.precio}</p>
         <a class="agregar__carrito" id="button${producto.id}">Agregar al carrito</a>
-      </div>
+          </div>
         </div>
         `
         contenedorProductos.appendChild(div)
@@ -48,14 +56,25 @@ function createProduct(){
         // agregamos funcionalidad al boton
         const agregar = document.getElementById(`button${producto.id}`);
         agregar.addEventListener('click',() => {
-            alert(`Se agrego :  ${producto.nombre}`)
+          Toastify({
+            text: "Se agrego al carrito exitosamente",
+            duration: 3000,
+            destination: "https://github.com/apvarun/toastify-js",
+            newWindow: true,
+            gravity: "top", // `top` or `bottom`
+            position: "left ", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+            onClick: function(){} // Callback after click
+          }).showToast();
             pushearCarrito(`${producto.id}`);
             
         })
     })
 }
 
-fetchData()
 
 
 
@@ -63,7 +82,7 @@ fetchData()
 
 // agregar producto al carrito
 function pushearCarrito(id) {
-    const producto = productos.find((p) => p.id == id);
+    const producto = productos.find((prod) => prod.id == id);
     if (!producto) {
       return;
     }
@@ -77,6 +96,7 @@ function pushearCarrito(id) {
     } else {
       arrayCarrito.push({ ...producto, cantidad: 1 });
     }
+    localStorage.setItem('cart',JSON.stringify(arrayCarrito))
     renderizarCarrito();
   }
 
@@ -101,64 +121,57 @@ function renderizarCarrito(){
          containerCarrito.appendChild(productoContainer);
          const eliminar = document.getElementById(`eliminar${producto.id}`)
          eliminar.addEventListener('click', (id) => {
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Se elimino correctamente del carrito',
+            showConfirmButton: false,
+            timer: 1500
+          })
              eliminarDelCarrito(producto.id)
          })
+         precioTotal.innerText = arrayCarrito.reduce((acc,producto) => acc + producto.cantidad * producto.precio,0)
      })
  }
 
 
+ function eliminarDelCarrito(id){
+  let existe = arrayCarrito.some((prod) => prod.id == id)
+  if(existe){
+    arrayCarrito.map((prod) => {
+      if(prod.id == id){
+        prod.cantidad--;
+        if(prod.cantidad < 1){
+          arrayCarrito = arrayCarrito.filter((prod) => prod.id != id);
+        }
+      }
+    });
+  }
+  localStorage.setItem('cart',JSON.stringify(arrayCarrito))
+  precioTotal.innerText = arrayCarrito.reduce((acc,producto) => acc - producto.precio,0)
+  renderizarCarrito()
+ }
 
 
 
-
-// div.innerHTML =
-//  `<div class="card">
-// <img src="${vodka.imagen}" class="card-img-top" alt="...">
-// <div class="card-body">
-//   <h5 class="card-title">${vodka.nombre}</h5>
-//   <p class="card-text">${vodka.descripcion}</p>
-//   <p class="card-text">$ ${vodka.precio}</p>
-//   <button id=btn${vodka.id} class="btn btn-primary">Comprar</button>
-// </div>
-// </div>`
-
-
-
-// let div2 = document.getElementById("div2")
-// div2.innerHTML = `<div class="card">
-// <img src="${cerveza.imagen}" class="card-img-top" alt="...">
-// <div class="card-body">
-//   <h5 class="card-title">${cerveza.nombre}</h5>
-//   <p class="card-text">${cerveza.descripcion}</p>
-//   <p class="card-text">$ ${cerveza.precio}</p>
-//   <button id=btn${cerveza.id} class="btn btn-primary">Comprar</button>
-// </div>
-// </div>`
-
-// let div3 = document.getElementById("div3")
-// div3.innerHTML = `<div class="card">
-// <img src="${gin.imagen}" class="card-img-top" alt="...">
-// <div class="card-body">
-//     <h5 class="card-title">${gin.nombre}</h5>
-//     <p class="card-text">${gin.descripcion}</p>
-//     <p class="card-text">$ ${gin.precio}</p>
-//     <button id=btn${gin.id}  class="btn btn-primary">Comprar</button>
-// </div>
-// </div>`
-
-// let boton = document.getElementById('btn1');
-// boton.onclick = () => agregarAlCarro();
-
-// function agregarAlCarro (){
-//     carrito.push(vodka);
-//     alert('Se agrego el Vodka Absolut al carrito !')
-// }
-
-
-// let boton2 = document.getElementById('btn2');
-// boton.onclick = () => agregarAlCarro2()
-
-// function agregarAlCarro2(){
-//     carrito.push(cerveza)
-//     alert('Se agrego cerveza')}
-    
+ botonVaciar.addEventListener('click',() => {
+  Swal.fire({
+    title: 'Seguro que quieres vaciar el carrito?',
+    text: "Si aceptas se eliminaran todos los productos de tu carrito",
+    icon: 'warning',
+    showCancelButton: false,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Aceptar!',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Carrito Vacio!',
+      )
+    }
+  })
+  arrayCarrito.length = 0;
+  precioTotal.innerText = arrayCarrito.reduce((acc,producto) => acc - producto.precio,0)
+  localStorage.setItem('cart',JSON.stringify(arrayCarrito))
+  renderizarCarrito()
+ })

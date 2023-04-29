@@ -13,13 +13,9 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 700px;
+    height: auto;
     flex-wrap: wrap;
     
-}
-
-#carrito-container{
-    height: 1400px;
 }
 
 .agregar__carrito{
@@ -28,6 +24,7 @@
     padding: 4px 10px;
     border: 1px solid #000;
     cursor: pointer;
+    border-radius: 10rem;
 }
 
 .card{
@@ -53,3 +50,39 @@
     color: brown;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+.total-boton {
+    text-align: center;
+    display: flex;
+    flex-direction: column;}
+
+    img {
+        height: 20rem;
+        width: 18rem;
+    }
+
+    .carrito{
+        display: flex;
+    }
+
+    .price {
+        text-align: center;
+        margin-top: 1rem;
+    }
+    .cantidad {
+        font-family: cursive;
+        color: darkblue;
+    }
+    .agregar__carrito {
+        text-decoration: none;
+        color: #000;
+        padding: 4px 10px;
+        border: 1px solid #000;
+        cursor: pointer;
+        border-radius: 10rem;
+        text-align: center;}
+
+        p#precio-total {
+            margin: 2rem;
+            font-size: xxx-large;
+        }

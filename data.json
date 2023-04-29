@@ -34,4 +34,11 @@
         "nombre":"Whisky",
         "descripcion":"Whisky de 1L",
         "precio":2000
+    },
+    {
+        "id":6,
+        "imagen":"./img/champagne.jpg",
+        "nombre":"Champagne",
+        "descripcion":"Champagne de 1L",
+        "precio":2500
     }]
