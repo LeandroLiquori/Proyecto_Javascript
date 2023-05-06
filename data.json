@@ -41,4 +41,43 @@
         "nombre":"Champagne",
         "descripcion":"Champagne de 1L",
         "precio":2500
-    }]
+    },
+    {
+        "id":7,
+        "imagen":"./img/ron.jpg",
+        "nombre":"Ron",
+        "descripcion":"Ron de 1L",
+        "precio":3000
+    },
+    {
+        "id":8,
+        "imagen":"./img/sidra.jpg",
+        "nombre":"Sidra",
+        "descripcion":"Sidra de 1L",
+        "precio":1100
+    },
+    {
+        "id":9,
+        "imagen":"./img/tequila.png",
+        "nombre":"Tequila",
+        "descripcion":"Tequila de 1L",
+        "precio":900
+    },
+    {
+        "id":10,
+       "imagen":"./img/vino_blanco.jpg",
+         "nombre":"Vino Blanco",
+         "descripcion":"Vino Blanco de 1L",
+        "precio":1600},
+        {
+            "id":11,
+           "imagen":"./img/sky.png",
+             "nombre":"Vodka Sky",
+             "descripcion":"Vodka de 1L",
+            "precio":1300},
+            {
+                "id":12,
+               "imagen":"./img/jagger.png",
+                 "nombre":"Jagermesteir",
+                 "descripcion":"Jagger de 1L",
+                "precio":3000}]

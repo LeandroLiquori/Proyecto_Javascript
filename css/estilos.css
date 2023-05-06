@@ -1,7 +1,7 @@
 .general{
     display: flex;
     flex-direction: row;
-    gap: 3rem;
+    gap: 1rem;
     height: auto;
     
 }
@@ -15,7 +15,7 @@
     align-items: center;
     height: auto;
     flex-wrap: wrap;
-    
+    margin-top: 1rem;
 }
 
 .agregar__carrito{
@@ -82,7 +82,53 @@
         border-radius: 10rem;
         text-align: center;}
 
-        p#precio-total {
-            margin: 2rem;
-            font-size: xxx-large;
+
+    .navbar-brand {
+        color: white;
+        font-size: 2rem;
+        font-family: fantasy;
+        display: flex;
+    }
+    .navbar-toggler {
+        padding: var(--bs-navbar-toggler-padding-y) var(--bs-navbar-toggler-padding-x);
+        font-size: var(--bs-navbar-toggler-font-size);
+        line-height: 1;
+        color: #8BC34A;
+        background-color: white;
+        border: var(--bs-border-width) solid var(--bs-navbar-toggler-border-color);
+        border-radius: var(--bs-navbar-toggler-border-radius);
+        transition: var(--bs-navbar-toggler-transition);
+    }
+    .texto {
+        text-align: center;
+        margin-top: 6rem;
+        font-size: x-large;
+    }
+    .total-boton {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        height: 3rem;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+    p#precio-total {
+        display: flex;
+        width: 10rem;
+        font-size: xx-large;
+    }
+    nav.navbar.bg-body-tertiary.fixed-top {
+        background-color: black;
+    }
+    .agregar__carrito{
+        background-color: darkseagreen;
+    }
+    .img2 {
+        margin: 2rem;
+        height: 10rem;}
+
+    .bienvenida {
+            font-size: -webkit-xxx-large;
+            color: black;
+            margin-top: 1rem;
         }

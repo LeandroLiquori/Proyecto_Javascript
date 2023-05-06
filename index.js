@@ -4,7 +4,7 @@ let productos = [];
 const containerCarrito = document.getElementById('carrito-container');
 const botonVaciar = document.getElementById('eliminar-carrito')
 const precioTotal = document.getElementById('precio-total');
-
+const finalizarCompra = document.getElementById('finalizar-compra')
 
 document.addEventListener('DOMContentLoaded', () => {
     createProduct();
@@ -100,39 +100,38 @@ function pushearCarrito(id) {
     renderizarCarrito();
   }
 
-
-
-// renderizamos el carrito
-function renderizarCarrito(){
-    containerCarrito.innerHTML = "";
-     if(arrayCarrito.length < 1){
-          return;}
-     arrayCarrito.forEach(function renderizarProducto(producto){
-         let productoContainer = document.createElement('div');
-         productoContainer.id = producto.id
-         productoContainer.innerHTML = `
-         <div class="card">
-         <h5 class="titulo">${producto.nombre}:</h5>
-         <img src=${producto.imagen} alt=""/>
-         <h4 class="price">$${producto.precio}</h4>
-         <a class="cantidad">Cantidad:${producto.cantidad}</a>
-         <a class="agregar__carrito agregar__carrito--2" id="eliminar${producto.id}">Retirar</a>
-         </div>`
-         containerCarrito.appendChild(productoContainer);
-         const eliminar = document.getElementById(`eliminar${producto.id}`)
-         eliminar.addEventListener('click', (id) => {
-          Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Se elimino correctamente del carrito',
-            showConfirmButton: false,
-            timer: 1500
+ 
+ // renderizamos el carrito
+ function renderizarCarrito(){
+     containerCarrito.innerHTML = "";
+      if(arrayCarrito.length < 1){
+           return;}
+      arrayCarrito.forEach(function renderizarProducto(producto){
+          let productoContainer = document.createElement('div');
+          productoContainer.id = producto.id
+          productoContainer.innerHTML = `
+          <div class="card">
+          <h5 class="titulo">${producto.nombre}:</h5>
+          <img src=${producto.imagen} alt=""/>
+          <h4 class="price">$${producto.precio}</h4>
+          <a class="cantidad">Cantidad:${producto.cantidad}</a>
+          <a class="agregar__carrito agregar__carrito--2" id="eliminar${producto.id}">Retirar</a>
+          </div>`
+          containerCarrito.appendChild(productoContainer);
+          const eliminar = document.getElementById(`eliminar${producto.id}`)
+          eliminar.addEventListener('click', (id) => {
+           Swal.fire({
+             position: 'center',
+             icon: 'error',
+             title: 'Se elimino correctamente del carrito',
+             showConfirmButton: false,
+             timer: 1500
+           })
+              eliminarDelCarrito(producto.id)
           })
-             eliminarDelCarrito(producto.id)
-         })
-         precioTotal.innerText = arrayCarrito.reduce((acc,producto) => acc + producto.cantidad * producto.precio,0)
-     })
- }
+          precioTotal.innerText = arrayCarrito.reduce((acc,producto) => acc + producto.cantidad * producto.precio,0)
+      })
+  }
 
 
  function eliminarDelCarrito(id){
@@ -174,4 +173,9 @@ function renderizarCarrito(){
   precioTotal.innerText = arrayCarrito.reduce((acc,producto) => acc - producto.precio,0)
   localStorage.setItem('cart',JSON.stringify(arrayCarrito))
   renderizarCarrito()
+ })
+
+ finalizarCompra.addEventListener('click', () => {
+   Swal.fire('Muchas gracias por su compra!! El total de la compra es de: $ ' + precioTotal.innerHTML)
+ 
  })
