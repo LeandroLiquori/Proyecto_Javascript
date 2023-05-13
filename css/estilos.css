@@ -44,12 +44,15 @@
     text-align: center;
     width: 18rem;
 }
-
+ 
 .bienvenida{
     text-align: center;
-    color: brown;
+    color: gold;
     font-family: Georgia, 'Times New Roman', Times, serif;
-}
+            font-size: -webkit-xxx-large;
+            margin-top: 1rem;
+        } 
+
 
 .total-boton {
     text-align: center;
@@ -116,6 +119,7 @@
         display: flex;
         width: 10rem;
         font-size: xx-large;
+        color: gold;
     }
     nav.navbar.bg-body-tertiary.fixed-top {
         background-color: black;
@@ -127,8 +131,44 @@
         margin: 2rem;
         height: 10rem;}
 
-    .bienvenida {
-            font-size: -webkit-xxx-large;
-            color: black;
-            margin-top: 1rem;
-        }
+  
+
+.rangodeprecios{
+    width: 21rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    float: left;
+    border: 1px solid;
+    color: black;
+    margin-top: 21px;
+    border-radius: 10px;
+background-color: white;}
+
+.botonfiltrar{
+    width: 5rem;
+    border: 1px solid black;
+    margin-left: 8rem;
+    border-radius: 10px;
+}
+.rangos {
+    display: flex;
+    width: 15rem;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+    margin-left: 3rem;
+}
+.fondo{
+background-image: url(../img/fondo4.jpg);
+}
+.caja {
+    background-color: white;
+    border-radius: 25px;
+}
+.input-min {
+    width: 5rem;
+}
+.input-max {
+    width: 5rem;
+}
