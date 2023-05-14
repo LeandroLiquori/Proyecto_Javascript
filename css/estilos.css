@@ -172,3 +172,9 @@ background-image: url(../img/fondo4.jpg);
 .input-max {
     width: 5rem;
 }
+.form-label {
+    margin-bottom: 0.5rem;
+    color: darkblue;
+    margin-top: 10px;
+    font-size: x-large;
+}

@@ -6,12 +6,59 @@ const botonVaciar = document.getElementById('eliminar-carrito')
 const precioTotal = document.getElementById('precio-total');
 const finalizarCompra = document.getElementById('finalizar-compra')
 
+const inputMin = document.querySelector('.input-min');
+const inputMax = document.querySelector('.input-max');
+const rangeInput = document.querySelector('.form-range');
+const botonFiltrar = document.querySelector('.botonfiltrar');
+
 document.addEventListener('DOMContentLoaded', () => {
     createProduct();
     fetchData()
     aJson()
 });
 
+botonFiltrar.addEventListener('click', filtrarPorPrecio);
+function filtrarPorPrecio() {
+  const min = Number(inputMin.value);
+  const max = Number(inputMax.value);
+  
+  // Filtrar los productos por el rango de precios
+  // Puedes adaptar esta lógica a tu estructura de datos y mostrar los productos filtrados como desees
+  const productosFiltrados = productos.filter(producto => producto.precio >= min && producto.precio <= max);
+  
+  // Ejemplo de cómo podrías mostrar los productos filtrados en la consola
+  renderizarProductosFiltrados(productosFiltrados);
+}
+
+
+function renderizarProductosFiltrados(productosFiltrados) {
+  const contenedorProductosFiltrados = document.getElementById('container-productos');
+  
+  // Vaciar el contenedor antes de agregar los productos filtrados
+  contenedorProductosFiltrados.innerHTML = '';
+  
+  productosFiltrados.forEach(producto => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <div class="card">
+        <img class="img" src="${producto.imagen}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${producto.nombre}</h5>
+          <p class="card-text">${producto.descripcion}</p>
+          <p class="card-text">$ ${producto.precio}</p>
+          <a class="agregar__carrito" id="button${producto.id}">Agregar al carrito</a>
+        </div>
+      </div>
+    `;
+    contenedorProductosFiltrados.appendChild(div);
+    
+    // Agregar funcionalidad al botón "Agregar al carrito" en los productos filtrados
+    const agregar = document.getElementById(`button${producto.id}`);
+    agregar.addEventListener('click', () => {
+      pushearCarrito(`${producto.id}`);
+    });
+  });
+}
 
 function aJson(){
   if(localStorage.getItem('cart')){
